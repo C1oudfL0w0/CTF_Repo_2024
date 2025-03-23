@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Submission</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        textarea {
+            resize: vertical;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .report-count {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<h1>Submit a Report</h1>
+
+<div class="container">
+    <div class="report-count">
+        <p>Current number of reports: <span id="report-count">Loading...</span></p>
+    </div>
+
+    <form action="/report" method="POST">
+        <div class="form-group">
+            <label for="user">User:</label>
+            <input type="text" id="user" name="user" required>
+        </div>
+
+        <input type="hidden" id="date" name="date">
+
+        <div class="form-group">
+            <label for="reportmessage">Report Message:</label>
+            <textarea id="reportmessage" name="reportmessage" rows="6" required></textarea>
+        </div>
+
+        <button type="submit">Submit Report</button>
+    </form>
+</div>
+
+<script>
+    window.onload = function() {
+        // 获取当前日期并填入隐藏字段
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+        const formattedDate = `${year}${month}${day}`;
+        document.getElementById('date').value = formattedDate;
+
+        // 请求当前报告数量并更新显示
+        fetch('/countreport')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('report-count').textContent = data.count;
+            })
+            .catch(error => {
+                console.error('Error fetching report count:', error);
+                document.getElementById('report-count').textContent = 'Error';
+            });
+    };
+</script>
+</body>
+</html>

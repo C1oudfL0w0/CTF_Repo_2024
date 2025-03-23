@@ -1,0 +1,27 @@
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #333333;
+}
+
+a {
+    color: burlywood;
+    display: inline;
+}
+
+h1 {
+    color: aliceblue;
+    text-align: center;
+}
+
+label{
+    color: antiquewhite;
+}
+
+li{
+   list-style-type :none;
+}
