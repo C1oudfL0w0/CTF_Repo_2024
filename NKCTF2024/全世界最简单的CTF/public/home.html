@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <title>My Home</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+<header>
+  <h1>My Home</h1>
+</header>
+<nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/">Js Code Submission</a></li>
+  </ul>
+</nav>
+<main>
+  <section id="codes">
+    <h2>Js Code Submission</h2>
+    <div>
+      <textarea id="code" name="code" placeholder="Enter your code here"></textarea>
+      <button type="submit" onclick="submit()">Submit Code</button>
+    </div>
+    <a href="/secret" hidden>get source</a>
+  </section>
+</main>
+</body>
+<script>
+  function submit() {
+    let code = $('#code').val()
+    $.ajax({
+      'url': '/',
+      'type': 'POST',
+      'contentType': 'application/json',
+      'data': JSON.stringify({
+        'code': code
+      }),
+      'success': function (data) {
+        alert("正在处理你的代码");
+      }
+    })
+  }
+</script>
+</html>
