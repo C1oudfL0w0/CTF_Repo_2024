@@ -1,0 +1,6 @@
+#运管:2023-5-10
+secret.host:
+    image: nginx
+    container_name: secret.host
+    volumes:
+      - ./:/etc/nginx/conf.d/
